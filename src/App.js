@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Form from "./components/Form";
+import React from "react";
+import Layout from "../src/layout/Layout";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import AboutUs from "./components/AboutUs";
+import { RoutesObj } from "../src/Routes/index";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
+  function renderRoutes() {
+    return RoutesObj.map((data, key) => (
+      <Route path={data.path} element={data.elements} key={key}></Route>
+    ));
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout header={<Header />} footer={<Footer />}>
+      <Routes>
+        {/* <Route path="/" element={<Form />}></Route>
+        <Route path="/aboutus" element={<AboutUs />}></Route> */}
+        {renderRoutes()}
+      </Routes>
+    </Layout>
   );
 }
 
